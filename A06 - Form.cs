@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
                 SqlDataReader Drr = Kom.ExecuteReader();
                 while (Drr.Read())
                 {
-                    ListaBoxa.Items.Add(Drr[0].ToString() + "\t" + Drr[1].ToString() + ", " + Drr[2].ToString());
+                    ListaBoxa.Items.Add(Drr[0].ToString().PadLeft(3,'0') + "\t" + Drr[1].ToString() + ", " + Drr[2].ToString());
                 }
                 Kon.Close();
             }
