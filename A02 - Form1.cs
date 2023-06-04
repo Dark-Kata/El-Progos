@@ -36,6 +36,10 @@ namespace WindowsFormsApp1
                 item.SubItems.Add(Dr[1].ToString());
                 item.SubItems.Add(Dr[2].ToString());
                 item.SubItems.Add(((DateTime)Dr[3]).ToString("dd.MM.yyyy"));
+                //DateTime datum = Dr.GetDateTime(3);
+                //string formatiranDatum = datum.ToString("dd/MM/yyyy");
+                //formatiranDatum = formatiranDatum.Replace("-", "/");
+                //item.SubItems.Add(formatiranDatum);
                 ListaViewa.Items.Add(item);
             }
             Kon.Close();
