@@ -322,5 +322,51 @@ namespace WindowsFormsApp1
         {
             Application.Exit();
         }
+        
+        private void textBox1_Leave(object sender, EventArgs e)
+      {
+          int id = Convert.ToInt32(textBox1.Text);
+          SqlCommand kom = new SqlCommand("SELECT * FROM Vozilo WHERE VoziloID = @id", kon);
+          kom.Parameters.AddWithValue("@id", textBox1.Text);
+          kon.Open();
+          SqlDataReader dr = kom.ExecuteReader();
+          dr.Read();
+          textBox1.Text = dr[0].ToString();
+          textBox2.Text = dr[1].ToString();
+          textBox3.Text = dr[2].ToString();
+          textBox4.Text = dr[3].ToString();
+          textBox5.Text = dr[7].ToString();
+          int ModelID = Convert.ToInt32(dr[4]);
+          int BojaID = Convert.ToInt32(dr[5]);
+          int GorivoID = Convert.ToInt32(dr[6]);
+          kon.Close();
+          //Popunjavanje GorivoCB
+          SqlCommand kom1 = new SqlCommand("SELECT Naziv FROM Gorivo Where GorivoID = @g", kon);
+          kom1.Parameters.AddWithValue("@g", GorivoID);
+          kon.Open();
+          SqlDataReader dr1 = kom1.ExecuteReader();
+          dr1.Read();
+          comboBox3.Text = dr1[0].ToString();
+          kon.Close();
+
+          //Popunjavanje BojaCB
+          SqlCommand kom12 = new SqlCommand("SELECT Naziv FROM Boja Where BojaID = @b", kon);
+          kom12.Parameters.AddWithValue("@b", BojaID);
+          kon.Open();
+          SqlDataReader dr12 = kom12.ExecuteReader();
+          dr12.Read();
+          comboBox2.Text = dr12[0].ToString();
+          kon.Close();
+
+          //Popunjavanje ModelCB
+          SqlCommand kom22 = new SqlCommand("SELECT Naziv FROM Model Where ModelID = @m", kon);
+          kom22.Parameters.AddWithValue("@m", ModelID);
+          kon.Open();
+          SqlDataReader dr22 = kom22.ExecuteReader();
+          dr22.Read();
+          comboBox1.Text = dr22[0].ToString();
+          kon.Close();
+      }
+        
     }
 }
